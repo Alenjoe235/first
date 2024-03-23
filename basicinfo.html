@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <form action="https://sheetdb.io/api/v1/r4a1wd4lp88w1" method="post" id="sheetdb-form">
+    <div>
+        <label>Name</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label>Place</label>
+        <input type="text" name="place"> <!-- Corrected the attribute name -->
+        <br>
+        <label>Age</label>
+        <input type="number" name="age"> <!-- Corrected the attribute name -->
+        <br>
+        <button type="submit">Submit</button> <!-- Corrected the button type and added the closing tag -->
+    </div>
+  </form>
+</body>
+<script>
+  var form = document.getElementById('sheetdb-form');
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value = null;
+    const place = document.getElementsByName('place')[0].value = null; // Getting place value
+    const age = document.getElementsByName('age')[0].value = null; // Getting age value
+    const data = { name, place, age }; // Creating data object
+    fetch(form.action, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      // Handle success response here
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle error here
+    });
+    alert("submitted");
+  });
+</script>
+</html>
